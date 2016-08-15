@@ -1,0 +1,6 @@
+1. the cluster doesn't have BC installed ?
+2. the ${!tmp} stuff(line 307 & 310) ios wrong ?
+3. error message indicates protential problem at "sortIndex"( sort function buged out again!? )
+
+
+192.168.1.89 GaoRuoG 123456
