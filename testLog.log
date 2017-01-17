@@ -1,0 +1,471 @@
+left:0, right: 99, pivot: 4
+swap: 0 <-> 2
+swap: 1 <-> 4
+swap: 2 <-> 5
+swap: 3 <-> 6
+swap: 4 <-> 9
+swap: 5 <-> 12
+swap: 6 <-> 14
+swap: 7 <-> 15
+swap: 8 <-> 16
+swap: 9 <-> 19
+swap: 10 <-> 23
+swap: 11 <-> 24
+swap: 12 <-> 25
+swap: 13 <-> 34
+swap: 14 <-> 37
+swap: 15 <-> 45
+swap: 16 <-> 49
+swap: 17 <-> 55
+swap: 18 <-> 56
+swap: 19 <-> 57
+swap: 20 <-> 61
+swap: 21 <-> 67
+swap: 22 <-> 70
+swap: 23 <-> 74
+swap: 24 <-> 79
+swap: 25 <-> 80
+swap: 26 <-> 82
+swap: 27 <-> 84
+swap: 28 <-> 86
+swap: 29 <-> 88
+swap: 30 <-> 96
+swap: 31 <-> 99
+devide: 31
+left:0, right: 30, pivot: 4
+swap: 30 <-> 30
+devide: 30
+left:0, right: 29, pivot: 3
+swap: 0 <-> 2
+swap: 1 <-> 4
+swap: 2 <-> 10
+swap: 3 <-> 15
+swap: 4 <-> 17
+swap: 5 <-> 19
+swap: 6 <-> 20
+swap: 7 <-> 21
+swap: 8 <-> 26
+swap: 9 <-> 29
+devide: 9
+left:0, right: 8, pivot: 2
+swap: 0 <-> 5
+swap: 1 <-> 7
+swap: 2 <-> 8
+devide: 2
+left:0, right: 1, pivot: 2
+swap: 1 <-> 1
+devide: 1
+halt, left:0, right: 0
+halt, left:2, right: 1
+left:3, right: 8, pivot: 3
+swap: 8 <-> 8
+devide: 8
+left:3, right: 7, pivot: 3
+swap: 7 <-> 7
+devide: 7
+left:3, right: 6, pivot: 3
+swap: 6 <-> 6
+devide: 6
+left:3, right: 5, pivot: 3
+swap: 5 <-> 5
+devide: 5
+left:3, right: 4, pivot: 3
+swap: 4 <-> 4
+devide: 4
+halt, left:3, right: 3
+halt, left:5, right: 4
+halt, left:6, right: 5
+halt, left:7, right: 6
+halt, left:8, right: 7
+halt, left:9, right: 8
+left:10, right: 29, pivot: 4
+swap: 29 <-> 29
+devide: 29
+left:10, right: 28, pivot: 4
+swap: 28 <-> 28
+devide: 28
+left:10, right: 27, pivot: 4
+swap: 27 <-> 27
+devide: 27
+left:10, right: 26, pivot: 4
+swap: 26 <-> 26
+devide: 26
+left:10, right: 25, pivot: 4
+swap: 25 <-> 25
+devide: 25
+left:10, right: 24, pivot: 4
+swap: 24 <-> 24
+devide: 24
+left:10, right: 23, pivot: 4
+swap: 23 <-> 23
+devide: 23
+left:10, right: 22, pivot: 4
+swap: 22 <-> 22
+devide: 22
+left:10, right: 21, pivot: 4
+swap: 21 <-> 21
+devide: 21
+left:10, right: 20, pivot: 4
+swap: 20 <-> 20
+devide: 20
+left:10, right: 19, pivot: 4
+swap: 19 <-> 19
+devide: 19
+left:10, right: 18, pivot: 4
+swap: 18 <-> 18
+devide: 18
+left:10, right: 17, pivot: 4
+swap: 17 <-> 17
+devide: 17
+left:10, right: 16, pivot: 4
+swap: 16 <-> 16
+devide: 16
+left:10, right: 15, pivot: 4
+swap: 15 <-> 15
+devide: 15
+left:10, right: 14, pivot: 4
+swap: 14 <-> 14
+devide: 14
+left:10, right: 13, pivot: 4
+swap: 13 <-> 13
+devide: 13
+left:10, right: 12, pivot: 4
+swap: 12 <-> 12
+devide: 12
+left:10, right: 11, pivot: 4
+swap: 11 <-> 11
+devide: 11
+halt, left:10, right: 10
+halt, left:12, right: 11
+halt, left:13, right: 12
+halt, left:14, right: 13
+halt, left:15, right: 14
+halt, left:16, right: 15
+halt, left:17, right: 16
+halt, left:18, right: 17
+halt, left:19, right: 18
+halt, left:20, right: 19
+halt, left:21, right: 20
+halt, left:22, right: 21
+halt, left:23, right: 22
+halt, left:24, right: 23
+halt, left:25, right: 24
+halt, left:26, right: 25
+halt, left:27, right: 26
+halt, left:28, right: 27
+halt, left:29, right: 28
+halt, left:30, right: 29
+halt, left:31, right: 30
+left:32, right: 99, pivot: 5
+swap: 32 <-> 35
+swap: 33 <-> 39
+swap: 34 <-> 41
+swap: 35 <-> 42
+swap: 36 <-> 43
+swap: 37 <-> 48
+swap: 38 <-> 49
+swap: 39 <-> 52
+swap: 40 <-> 53
+swap: 41 <-> 54
+swap: 42 <-> 57
+swap: 43 <-> 61
+swap: 44 <-> 65
+swap: 45 <-> 66
+swap: 46 <-> 68
+swap: 47 <-> 69
+swap: 48 <-> 72
+swap: 49 <-> 74
+swap: 50 <-> 76
+swap: 51 <-> 78
+swap: 52 <-> 82
+swap: 53 <-> 85
+swap: 54 <-> 88
+swap: 55 <-> 90
+swap: 56 <-> 91
+swap: 57 <-> 94
+swap: 58 <-> 99
+devide: 58
+left:32, right: 57, pivot: 5
+swap: 57 <-> 57
+devide: 57
+left:32, right: 56, pivot: 5
+swap: 56 <-> 56
+devide: 56
+left:32, right: 55, pivot: 5
+swap: 55 <-> 55
+devide: 55
+left:32, right: 54, pivot: 5
+swap: 54 <-> 54
+devide: 54
+left:32, right: 53, pivot: 5
+swap: 53 <-> 53
+devide: 53
+left:32, right: 52, pivot: 5
+swap: 52 <-> 52
+devide: 52
+left:32, right: 51, pivot: 5
+swap: 51 <-> 51
+devide: 51
+left:32, right: 50, pivot: 5
+swap: 50 <-> 50
+devide: 50
+left:32, right: 49, pivot: 5
+swap: 49 <-> 49
+devide: 49
+left:32, right: 48, pivot: 5
+swap: 48 <-> 48
+devide: 48
+left:32, right: 47, pivot: 5
+swap: 47 <-> 47
+devide: 47
+left:32, right: 46, pivot: 5
+swap: 46 <-> 46
+devide: 46
+left:32, right: 45, pivot: 5
+swap: 45 <-> 45
+devide: 45
+left:32, right: 44, pivot: 5
+swap: 44 <-> 44
+devide: 44
+left:32, right: 43, pivot: 5
+swap: 43 <-> 43
+devide: 43
+left:32, right: 42, pivot: 5
+swap: 42 <-> 42
+devide: 42
+left:32, right: 41, pivot: 5
+swap: 41 <-> 41
+devide: 41
+left:32, right: 40, pivot: 5
+swap: 40 <-> 40
+devide: 40
+left:32, right: 39, pivot: 5
+swap: 39 <-> 39
+devide: 39
+left:32, right: 38, pivot: 5
+swap: 38 <-> 38
+devide: 38
+left:32, right: 37, pivot: 5
+swap: 37 <-> 37
+devide: 37
+left:32, right: 36, pivot: 5
+swap: 36 <-> 36
+devide: 36
+left:32, right: 35, pivot: 5
+swap: 35 <-> 35
+devide: 35
+left:32, right: 34, pivot: 5
+swap: 34 <-> 34
+devide: 34
+left:32, right: 33, pivot: 5
+swap: 33 <-> 33
+devide: 33
+halt, left:32, right: 32
+halt, left:34, right: 33
+halt, left:35, right: 34
+halt, left:36, right: 35
+halt, left:37, right: 36
+halt, left:38, right: 37
+halt, left:39, right: 38
+halt, left:40, right: 39
+halt, left:41, right: 40
+halt, left:42, right: 41
+halt, left:43, right: 42
+halt, left:44, right: 43
+halt, left:45, right: 44
+halt, left:46, right: 45
+halt, left:47, right: 46
+halt, left:48, right: 47
+halt, left:49, right: 48
+halt, left:50, right: 49
+halt, left:51, right: 50
+halt, left:52, right: 51
+halt, left:53, right: 52
+halt, left:54, right: 53
+halt, left:55, right: 54
+halt, left:56, right: 55
+halt, left:57, right: 56
+halt, left:58, right: 57
+left:59, right: 99, pivot: 7
+swap: 69 <-> 71
+swap: 70 <-> 72
+swap: 71 <-> 75
+swap: 72 <-> 76
+swap: 73 <-> 78
+swap: 74 <-> 79
+swap: 75 <-> 80
+swap: 76 <-> 81
+swap: 77 <-> 82
+swap: 78 <-> 83
+swap: 79 <-> 84
+swap: 80 <-> 87
+swap: 81 <-> 88
+swap: 82 <-> 92
+swap: 83 <-> 94
+swap: 84 <-> 95
+swap: 85 <-> 97
+swap: 86 <-> 98
+swap: 87 <-> 99
+devide: 87
+left:59, right: 86, pivot: 6
+swap: 63 <-> 64
+swap: 64 <-> 66
+swap: 65 <-> 69
+swap: 66 <-> 72
+swap: 67 <-> 73
+swap: 68 <-> 74
+swap: 69 <-> 75
+swap: 70 <-> 77
+swap: 71 <-> 78
+swap: 72 <-> 79
+swap: 73 <-> 82
+swap: 74 <-> 83
+swap: 75 <-> 86
+devide: 75
+left:59, right: 74, pivot: 6
+swap: 74 <-> 74
+devide: 74
+left:59, right: 73, pivot: 6
+swap: 73 <-> 73
+devide: 73
+left:59, right: 72, pivot: 6
+swap: 72 <-> 72
+devide: 72
+left:59, right: 71, pivot: 6
+swap: 71 <-> 71
+devide: 71
+left:59, right: 70, pivot: 6
+swap: 70 <-> 70
+devide: 70
+left:59, right: 69, pivot: 6
+swap: 69 <-> 69
+devide: 69
+left:59, right: 68, pivot: 6
+swap: 68 <-> 68
+devide: 68
+left:59, right: 67, pivot: 6
+swap: 67 <-> 67
+devide: 67
+left:59, right: 66, pivot: 6
+swap: 66 <-> 66
+devide: 66
+left:59, right: 65, pivot: 6
+swap: 65 <-> 65
+devide: 65
+left:59, right: 64, pivot: 6
+swap: 64 <-> 64
+devide: 64
+left:59, right: 63, pivot: 6
+swap: 63 <-> 63
+devide: 63
+left:59, right: 62, pivot: 6
+swap: 62 <-> 62
+devide: 62
+left:59, right: 61, pivot: 6
+swap: 61 <-> 61
+devide: 61
+left:59, right: 60, pivot: 6
+swap: 60 <-> 60
+devide: 60
+halt, left:59, right: 59
+halt, left:61, right: 60
+halt, left:62, right: 61
+halt, left:63, right: 62
+halt, left:64, right: 63
+halt, left:65, right: 64
+halt, left:66, right: 65
+halt, left:67, right: 66
+halt, left:68, right: 67
+halt, left:69, right: 68
+halt, left:70, right: 69
+halt, left:71, right: 70
+halt, left:72, right: 71
+halt, left:73, right: 72
+halt, left:74, right: 73
+halt, left:75, right: 74
+left:76, right: 86, pivot: 7
+swap: 86 <-> 86
+devide: 86
+left:76, right: 85, pivot: 7
+swap: 85 <-> 85
+devide: 85
+left:76, right: 84, pivot: 7
+swap: 84 <-> 84
+devide: 84
+left:76, right: 83, pivot: 7
+swap: 83 <-> 83
+devide: 83
+left:76, right: 82, pivot: 7
+swap: 82 <-> 82
+devide: 82
+left:76, right: 81, pivot: 7
+swap: 81 <-> 81
+devide: 81
+left:76, right: 80, pivot: 7
+swap: 80 <-> 80
+devide: 80
+left:76, right: 79, pivot: 7
+swap: 79 <-> 79
+devide: 79
+left:76, right: 78, pivot: 7
+swap: 78 <-> 78
+devide: 78
+left:76, right: 77, pivot: 7
+swap: 77 <-> 77
+devide: 77
+halt, left:76, right: 76
+halt, left:78, right: 77
+halt, left:79, right: 78
+halt, left:80, right: 79
+halt, left:81, right: 80
+halt, left:82, right: 81
+halt, left:83, right: 82
+halt, left:84, right: 83
+halt, left:85, right: 84
+halt, left:86, right: 85
+halt, left:87, right: 86
+left:88, right: 99, pivot: 8
+swap: 99 <-> 99
+devide: 99
+left:88, right: 98, pivot: 8
+swap: 98 <-> 98
+devide: 98
+left:88, right: 97, pivot: 8
+swap: 97 <-> 97
+devide: 97
+left:88, right: 96, pivot: 8
+swap: 96 <-> 96
+devide: 96
+left:88, right: 95, pivot: 8
+swap: 95 <-> 95
+devide: 95
+left:88, right: 94, pivot: 8
+swap: 94 <-> 94
+devide: 94
+left:88, right: 93, pivot: 8
+swap: 93 <-> 93
+devide: 93
+left:88, right: 92, pivot: 8
+swap: 92 <-> 92
+devide: 92
+left:88, right: 91, pivot: 8
+swap: 91 <-> 91
+devide: 91
+left:88, right: 90, pivot: 8
+swap: 90 <-> 90
+devide: 90
+left:88, right: 89, pivot: 8
+swap: 89 <-> 89
+devide: 89
+halt, left:88, right: 88
+halt, left:90, right: 89
+halt, left:91, right: 90
+halt, left:92, right: 91
+halt, left:93, right: 92
+halt, left:94, right: 93
+halt, left:95, right: 94
+halt, left:96, right: 95
+halt, left:97, right: 96
+halt, left:98, right: 97
+halt, left:99, right: 98
+halt, left:100, right: 99
