@@ -1,6 +1,14 @@
 1. the cluster doesn't have BC installed ?
-2. the ${!tmp} stuff(line 307 & 310) ios wrong ?
-3. error message indicates protential problem at "sortIndex"( sort function buged out again!? )
+	negative
+2. the ${!tmp} stuff(line 307 & 310) ios wrong ? 
+	negative
+3. error message indicates protential problem at "sortIndex(416)"( sort function buged out again!? )
+	sort function seems ok, it's the index overwhelm problem( due to wrong setting of EXTRACTN )
+4. all class turblances have been recorded, but sort input are all 0?
+	most likely due to the wrong settings of VASTART and VAEND
+5. why extracted 300+ rogue while totalN = 100 & extractN=1000?
+	cause Bash seems take "sortIndex" as kind of Associative Array, so even index i < 0, sortIndex[i] still returns 0
+6. still no output img from GNUPlot
+	
 
-
-192.168.1.89 GaoRuoG 123456
+192.168.1.89 gaorg 123456

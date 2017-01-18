@@ -31,8 +31,27 @@
 #	14.MVPDC, ~ _rlnMaxValueProbDistribution	#
 #	15.NSSC, ~ _rlnNrOfSignificantSamples		#
 ####################################################
-
+##IMPORTANT NOTICE: do check those macros below before running, or unexpected should happen
 LOGFILE=Mk04_lite.log
+OUTIMG=d02_r01.png
+PARAMETERN=4
+EXTRACTN=20
+HEADERL=29
+TCOLUMN=22
+
+VASTART=1 #close interval
+VAEND=10 #open interval
+
+INC=10 #_rlnImageName #10
+CXC=11 #_rlnCoordinateX #11 
+CYC=12 #_rlnCoordinateY #12 
+MNC=13 #_rlnMicrographName #13 
+CNC=22 #_rlnClassNumber #20  //hazard?(there was once 14)
+NCC=13 #_rlnNormCorrection #21
+LLCC=23 #_rlnLogLikeliContribution #22 
+MVPDC=25 #_rlnMaxValueProbDistribution #23 
+NSSC=24 #_rlnNrOfSignificantSamples #24 
+#################################################################################################
 
 ##function FileProcessing
 #input:1. fileNames( global access, I know  it's not good to use global variable,trust me I know what I'm doing)
@@ -155,21 +174,6 @@ function Qsort(){
 ####main
 ##phase 1: reading all files and organize them into predetermined format
 #read in and recognise the class number and store those file names
-#Macros
-PARAMETERN=4
-EXTRACTN=1000
-HEADERL=29
-TCOLUMN=22
-INC=10 #_rlnImageName #10
-CXC=11 #_rlnCoordinateX #11 
-CYC=12 #_rlnCoordinateY #12 
-MNC=13 #_rlnMicrographName #13 
-CNC=20 #_rlnClassNumber #20  //hazard?(there was once 14)
-NCC=21 #_rlnNormCorrection #21
-LLCC=22 #_rlnLogLikeliContribution #22 
-MVPDC=23 #_rlnMaxValueProbDistribution #23 
-NSSC=24 #_rlnNrOfSignificantSamples #24 
-
 touch ${LOGFILE}
 cat /dev/null > ${LOGFILE}
 touch RogueParticles.star
@@ -202,9 +206,6 @@ for arg in $@; do
 	fi
 	((tmpCounter+=1))
 done
-#Macros
-VASTART=60 #close interval
-VAEND=80 #open interval
 
 echo "Class Number: ${classN}" >> ${LOGFILE}
 echo "particle number: ${totalParticleN}" >> ${LOGFILE}
@@ -263,7 +264,7 @@ gnuplot -persist << EOF
 set xrange[0:${fileNameIndex}];
 set yrange[0:${classN}];
 set key off;
-set output '/pfs1/raozh/gruogu/project/conv_run01_aux/r01_d02.png';
+set output ${OUTIMG};
 set xlabel "Iteration number";
 set ylabel "particle class";
 #plot "statistic.dat" using 1:2 w lp pt 1 title "class 1", "statistic.dat" using 1:3 w lp pt 2 title "class 2", "statistic.dat" using 1:4 w lp pt 3 title "class 3"
