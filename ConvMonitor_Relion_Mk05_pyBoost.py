@@ -210,10 +210,10 @@ def _PostProcess( to_write ):
     #
     logging.info('Waypoint/postprocess/> ' + str( to_write ))
     w_file = open( STAT_FILE, 'w')
-    for i in range( len(to_write) ):
-        temp=''
-        for j in range( len(to_write[0]) ):
-            temp += str( to_write[i][j] ) + ' '
+    for i in range( len(to_write[0]) ):
+        temp = str( i ) + ' '
+        for j in range( len(to_write) ):
+            temp += str( to_write[j][i] ) + ' '
         w_file.write( temp[:-1] + '\n' )
 
     w_file.close()
