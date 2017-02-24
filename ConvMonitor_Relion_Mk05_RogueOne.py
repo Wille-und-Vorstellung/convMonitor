@@ -55,7 +55,7 @@ def _loadData():
     #result: particle_N X iter_N
     result = [ [ 0 for col in range(col_n) ] for row in range(row_n) ]
 
-
+    
     return result
 
 def _ocsilationCount():
