@@ -24,19 +24,17 @@ import time
 from functools import reduce
 import numpy as np
 import matplotlib.pyplot as plt
-import ConvMonitor_Relion_Mk05_pyBoost  as pyBoost
+#import ConvMonitor_Relion_Mk05_pyBoost  as pyBoost
 #Macros
 THIS_PROGRAM = 'RogueOne'
-
-logging.basicConfig(filename=pyBoost.VERSION + '_'+THIS_PROGRAM+'.log', \
-level=logging.DEBUG)
+VERSION = 'Mk05'
+LOG_NAME = VERSION + '_' +THIS_PROGRAM + '.log'
+logging.basicConfig(filename=LOG_NAME, level=logging.DEBUG)
 
 def _RogueOne(  ):
     print('/> Let\'s get down to business.')
     
-    tuple_ = _loadData()
-    trend = tuple_[0]
-    pivot = tuple_[1]
+    trend = _loadData()
     _shiftPlot( trend )
 
     flag = input('continue?(y/n)')
@@ -49,6 +47,7 @@ def _RogueOne(  ):
     
     sample_file = input('.star file: ')
     thres = input('threshold: ')
+    pivot = input('pivot: ')
     black_list = _oscillationCount( pivot, trend )
     _rogueExtract( thres, black_list, sample_file )
 
@@ -58,18 +57,21 @@ def _RogueOne(  ):
 def _shiftPlot( dat_matrix ):
     #count and plot class-shift occured in every other iteration
     shift_list = [0 for i in range( len(dat_matrix) -1 )]
-     
-    for i in range( 1, len(dat_matrix) ):
-        for j in range( dat_matrix[0] ):
-            if ( dat_matrix[i][j] != dat_matrix[i-1][j] ):
-                shift_list[i] += 1
     
+    for i in range( 1, len(dat_matrix) ):
+        for j in range( len(dat_matrix[0]) ):
+            if ( dat_matrix[i][j] != dat_matrix[i-1][j] ):
+                shift_list[i-1] += 1
+    
+    logging.info(shift_list)
+
     #plot with matplotlib
     plt.xlabel('Iterations')
     plt.ylabel('class shift')
     plt.title('Paritcle Oscillation')
-    plt.bar( np.arange(len(shift_list)), shift_list, width=1.6 )
+    plt.bar( np.arange(len(shift_list)), shift_list, width=1 )
     plt.plot( np.arange(len(shift_list)), shift_list, 'g--' )
+    plt.draw()
     plt.show()
 
     return 0
@@ -77,17 +79,17 @@ def _shiftPlot( dat_matrix ):
 def _loadData():
     ##read input and .dat files
     dat_f = input('.dat file: ')
-    with open( 'dat_f', 'r' ) as dat_x:
+    with open( dat_f, 'r' ) as dat_x:
         dat_lines = dat_x.readlines()
     
-    col_n = len(dat_lines)
-    row_n = len(dat_lines[0].split())
-    #result: particle_N X iter_N
+    row_n = len(dat_lines)
+    col_n = len(dat_lines[0].split())
+    #result: iter_N X particle_N 
     result = [ [ 0 for col in range(col_n) ] for row in range(row_n) ]
 
     for i in range( len( dat_lines ) ):
         temp_line = dat_lines[i].strip().split()
-        result[i] = temp_lines[0:]
+        result[i] = temp_line[0:]
 
     dat_x.close()
     return result
@@ -149,7 +151,7 @@ def  _rogueExtract( thres, black_list, sample ):
 
 if __name__ == '__main__':
     _RogueOne()
-    print(pyBoost.VERSION)
+    print(VERSION)
     exit(0)
 
 
