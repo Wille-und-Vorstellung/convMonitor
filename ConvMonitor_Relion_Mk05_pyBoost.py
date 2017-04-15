@@ -161,7 +161,7 @@ def _StandAloneModule( in_bundle ):
     data_buffer = file_buffer.readlines()
     row_L = len(data_buffer) - _HEADERL
     col_L = len(files)
-    logging.info("Waypoint/process_{0}/>file_list:{1}, row:{2}, col:{3}, header_length:{4}, CNC:{5}".format(os.getpid(), str(files), row_L, col_L, int(_HEADERL), int(_CNC)))
+    #logging.info("Waypoint/process_{0}/>file_list:{1}, row:{2}, col:{3}, header_length:{4}, CNC:{5}".format(os.getpid(), str(files), row_L, col_L, int(_HEADERL), int(_CNC)))
 
     result = (  [[0 for col in range(col_L)] for row in range(row_L)], \
                 [[0 for col in range(col_L)] for row in range(row_L)], \
@@ -178,15 +178,20 @@ def _StandAloneModule( in_bundle ):
         for j in range( _HEADERL ,len(data_buffer) ): #NOTE: here we assume that particle number differs not between files
             #logging.info('closing-in/{0}/>( {1}, {2}) while ( {3}, {4})'.format( os.getpid(), j-_HEADERL, i, row_L, col_L ))
             #logging.info( ' additional/{0}/>{1}-{2}--{3}, while-{4}'.format(os.getpid(), j-_HEADERL, i, _CNC-1, len( data_buffer[j].strip().split(' ') )))
-            result[0][j-_HEADERL][i] = data_buffer[j].strip().split()[_CNC-1]
-            logging.info('closing-in/{0}/>step_1, i = {1}, j = {2}, readin: {3}'.format(os.getpid(), i,j, result[0][j-_HEADERL][i] ))
-            result[1][j-_HEADERL][i] = data_buffer[j].strip().split()[_NCC-1]
+            #logging.info( 'Show yourself demon! ' + str(i) +'|' + str(len(result)) +'|'+ str(len( result[0] )) +'|'+ str(len(result[0][0]))+'|'+ str(j) +'|' + str(len(data_buffer)) +'|'+ str(len( data_buffer[j].strip().split() )) +'|'+ str( _CNC-1 ) )
+            temp_line = data_buffer[j].strip().split()
+            if ( len( temp_line ) <= 1 ):
+                continue
+
+            result[0][j-_HEADERL][i] = temp_line[_CNC-1]
+            #logging.info('closing-in/{0}/>step_1, i = {1}, j = {2}, readin: {3}'.format(os.getpid(), i,j, result[0][j-_HEADERL][i] ))
+            result[1][j-_HEADERL][i] = temp_line[_NCC-1]
             #logging.info('closing-in/{0}/>step_2, i = {1}, j = {2}'.format(os.getpid(), i,j))
-            result[2][j-_HEADERL][i] = data_buffer[j].strip().split()[_NSSC-1]
+            result[2][j-_HEADERL][i] = temp_line[_NSSC-1]
             #logging.info('closing-in/{0}/>step_3, i = {1}, j = {2}'.format(os.getpid(), i,j))
-            result[3][j-_HEADERL][i] = data_buffer[j].strip().split()[_MVPDC-1]
+            result[3][j-_HEADERL][i] = temp_line[_MVPDC-1]
             #logging.info('closing-in/{0}/>step_4, i = {1}, j = {2}'.format(os.getpid(), i,j))
-            result[4][j-_HEADERL][i] = data_buffer[j].strip().split()[_LLCC-1]
+            result[4][j-_HEADERL][i] = temp_line[_LLCC-1]
 
         file_buffer.close()
 
@@ -208,12 +213,12 @@ def _Merge( raw_1, raw_2 ):
 
 def _PostProcess( to_write ):
     #
-    logging.info('Waypoint/postprocess/> ' + str( to_write ))
+    #logging.info('Waypoint/postprocess/> ' + str( to_write ))
     w_file = open( STAT_FILE, 'w')
-    for i in range( len(to_write) ):
-        temp=''
-        for j in range( len(to_write[0]) ):
-            temp += str( to_write[i][j] ) + ' '
+    for i in range( len(to_write[0]) ):
+        temp = str( i ) + ' '
+        for j in range( len(to_write) ):
+            temp += str( to_write[j][i] ) + ' '
         w_file.write( temp[:-1] + '\n' )
 
     w_file.close()
@@ -264,6 +269,7 @@ def main():
     end_t = time.time()
 
     logging.info( "Waypoint/> " + 'file operation done, time consumption: ' + str( end_t - start_t )  )
+    print( 'File operation done, time consumption: ' + str( end_t - start_t ) )
     ####Additional analysis, including plotting with GNUPLOT and extract rogue/prudent particles(need additional input parameters)
     ####@_AdditionalAnalysis()
     _AdditionalAnalysis( merged_task[0] )
