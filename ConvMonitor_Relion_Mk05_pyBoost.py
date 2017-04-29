@@ -98,7 +98,7 @@ def _DataLoader():
     if ( process_N > PROC_UPPER or process_N < PROC_LOWER ):
         logging.info('Invalid process number.')
         exit(1)
-    if ( process_N > cpu_count() or process_N < 0 ):
+    if ( pool_size > cpu_count() or pool_size < 0 ):
         logging.info('Invalid pool size.')
         exit(2)
 

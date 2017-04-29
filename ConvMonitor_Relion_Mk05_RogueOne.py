@@ -48,8 +48,9 @@ def _RogueOne(  ):
     sample_file = input('.star file: ')
     thres = input('threshold: ')
     pivot = input('pivot: ')
-    black_list = _oscillationCount( pivot, trend )
-    _rogueExtract( thres, black_list, sample_file )
+    black_list = _oscillationCount( int(pivot), trend )
+    print( 'black_list: '+str( black_list ) )
+    _rogueExtract( int(thres), black_list, sample_file )
 
     return 117
 
@@ -97,9 +98,9 @@ def _loadData():
 def _oscillationCount( pivot, dat_matrix ):
     #count the oscillation N of every partilce in given interval
     #marginal check
-    if ( pivot >= len(dat_matrix) or pivot <= 1 ):
+    if ( pivot >= len(dat_matrix) or pivot < 0 ):
         logging.info("_oscillationCount> input pivot out of range")
-        return 1
+        return [1]
     result = [0 for i in range( len( dat_matrix[0] ) )]
 
     for i in range( pivot, len( dat_matrix ) ):
@@ -118,7 +119,7 @@ def  _rogueExtract( thres, black_list, sample ):
     for i in range( len(black_list) ):
         if ( black_list[i] >thres ):
             rogue_particle.append(i)
-    
+    '''
     target_label = '_rlnClassNumber'
     target_col = 0
     head_l = 0
@@ -126,7 +127,7 @@ def  _rogueExtract( thres, black_list, sample ):
         temp = i.strip().split()
         if ( len(temp) == 2 and temp[0] == target_label and target_col == 0):
             target_col = int( temp[0].strip('#') )
-        elif ( len(tmep) > 2 ):
+        elif ( len(temp) > 2 ):
             head_l = i
             break
     #extract rogue from  given sample .star file
@@ -144,7 +145,22 @@ def  _rogueExtract( thres, black_list, sample ):
             o_file.write( sample_dat[j] )
         else:
             o_file.write( sample_dat[output_index[j-head_l]] )
-     
+    '''
+
+    head_l = 0
+    for i in range(len(sample_dat)):
+        temp = sample_dat[i].strip().split()
+        if ( len(temp) > 2 ):
+            head_l = i
+            break
+
+    o_file = open('RogueOnes_in_'+sample+'.star', 'w')
+    for j in range( head_l + len(rogue_particle) ):
+        if ( j < head_l ):
+            o_file.write( sample_dat[j] )
+        else:
+            o_file.write( sample_dat[rogue_particle[j-head_l]] )
+
     o_file.close()
     sample_.close()
     return 0
