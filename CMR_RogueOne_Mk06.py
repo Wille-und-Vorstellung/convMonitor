@@ -27,17 +27,21 @@ import matplotlib.pyplot as plt
 #import ConvMonitor_Relion_Mk05_pyBoost  as pyBoost
 #Macros
 THIS_PROGRAM = 'RogueOne'
-VERSION = 'Mk05'
+VERSION = 'Mk06'
 LOG_NAME = VERSION + '_' +THIS_PROGRAM + '.log'
 logging.basicConfig(filename=LOG_NAME, level=logging.DEBUG)
 
 def _RogueOne(  ):
     print('/> Let\'s get down to business.')
-    
     trend = _loadData()
-    _shiftPlot( trend )
 
-    flag = input('continue?(y/n)')
+    flag = input( 'skip load-n-plot(*/n)?:' )
+    if( flag == 'n' or flag == 'N' ):
+        trend = _loadData()
+        _shiftPlot( trend )
+    
+    flag = 'n'
+    flag = input('Extract(y/n)?:')
     if ( flag == 'y' or flag == 'Y' ):
         print('/> Proceed to rogue extraction.')
         print('/> //please make sure input sample file be correct, doing otherwise at your own peril.')
@@ -46,11 +50,18 @@ def _RogueOne(  ):
         return 0
     
     sample_file = input('.star file: ')
-    thres = input('threshold: ')
-    pivot = input('pivot: ')
+    thres = input( 'threshold: ' )
+    pivot = input( 'pivot: ' )
+    tc = input( 'Target column of class N(mis-input at you peril~):' )
+    #print( tc )
     black_list = _oscillationCount( int(pivot), trend )
-    print( 'black_list: '+str( black_list ) )
-    _rogueExtract( int(thres), black_list, sample_file )
+    #print( 'black_list: '+str( black_list ) )
+    rogues, head_l, unstable_C = _rogueExtract( int(thres), black_list, sample_file, int(tc) )
+    _prudentExtract( rogues, sample_file, head_l )
+
+    #print unstable classes
+    print('Unstable classes:')
+    print( str(unstable_C) )
 
     return 117
 
@@ -104,48 +115,22 @@ def _oscillationCount( pivot, dat_matrix ):
     result = [0 for i in range( len( dat_matrix[0] ) )]
 
     for i in range( pivot, len( dat_matrix ) ):
-        for j in range( 1, len(result) ):
+        for j in range(1, len(result) ):
+            #NOTICE here, that the first slot of *.dat, thus dat_matrix[*][0], is the line nmber - 1, which is tailered for GNUPLOT scripts therefore should not be regarded as particle class numbers 
             if ( dat_matrix[i-1][j] != dat_matrix[i][j] ):
                     result[j] += 1
 
     return result
 
-def  _rogueExtract( thres, black_list, sample ):
+def  _rogueExtract( thres, black_list, sample, TARGET_COLUMN ):
     
     with open( sample, 'r' ) as sample_:
             sample_dat = sample_.readlines()
 
-    rogue_particle=[]
+    rogue_particle = []
     for i in range( len(black_list) ):
-        if ( black_list[i] >thres ):
+        if ( black_list[i] > thres ):
             rogue_particle.append(i)
-    '''
-    target_label = '_rlnClassNumber'
-    target_col = 0
-    head_l = 0
-    for i in sample_dat:
-        temp = i.strip().split()
-        if ( len(temp) == 2 and temp[0] == target_label and target_col == 0):
-            target_col = int( temp[0].strip('#') )
-        elif ( len(temp) > 2 ):
-            head_l = i
-            break
-    #extract rogue from  given sample .star file
-    output_index = []
-    for i in range( head_l, len(sample_dat) ):    
-        temp = sample_dat[i].strip().split()
-        if ( any( k == temp[target_col] for k in rogue_particle ) ):
-            #target spotted!
-            output_index.append(i)
-    
-    #output corresponding .star
-    o_file = open('RogueOnes'+pyBoost.VERSION+'.star', 'w')
-    for j in range( head_l + len(output_index) ):
-        if ( j < head_l ):
-            o_file.write( sample_dat[j] )
-        else:
-            o_file.write( sample_dat[output_index[j-head_l]] )
-    '''
 
     head_l = 0
     for i in range(len(sample_dat)):
@@ -153,17 +138,54 @@ def  _rogueExtract( thres, black_list, sample ):
         if ( len(temp) > 2 ):
             head_l = i
             break
-
+    '''
+    print("tc = " + str( TARGET_COLUMN ) )
+    print("h_l = " + str( head_l ) )
+    print( rogue_particle )
+    '''
+    unstable_class = []
+    temp_str = ''
+    temp_row = 0
     o_file = open('RogueOnes_in_'+sample+'.star', 'w')
     for j in range( head_l + len(rogue_particle) ):
+        
         if ( j < head_l ):
             o_file.write( sample_dat[j] )
         else:
-            o_file.write( sample_dat[ rogue_particle[j-head_l] + head_l ] )
+            temp_row = int( rogue_particle[j-head_l] ) + head_l
+            #NOTICE here, the rogue_particle only record the number of rogue particles, which is the row number of that particles in *_data.star files minus the head length( under such knowledge that the particle and it's line in star file is the same in all *_data.star files of the same process of Relion  )
+            o_file.write( sample_dat[temp_row] )
+            #print( '> ' + str(j)  +' - '+ str(temp_row) )
+            #print( '$ ' + sample_dat[temp_row] )
+            temp_str = sample_dat[temp_row].strip().split()[TARGET_COLUMN-1] #the array starts from 0, FYI 
+            unstable_class.append( temp_str )
 
     o_file.close()
     sample_.close()
+
+    uc = []
+    for i in unstable_class:
+        if ( not ( i in uc) ):
+            uc.append(i)
+
+    return rogue_particle, head_l, uc
+
+def _prudentExtract( rogues, sample, head_l ):
+    with open( sample, 'r' ) as sample_:
+            sample_dat = sample_.readlines()
+
+    o_file = open('Prudents_of_'+sample+'.star', 'w')
+    for j in range( len(sample_dat) ):
+        if ( j < head_l ):
+            o_file.write( sample_dat[j] )
+        elif (  not any( j - head_l == k for k in rogues)  ):
+            o_file.write( sample_dat[j] )
+
+    o_file.close()
+    sample_.close()
+
     return 0
+
 
 if __name__ == '__main__':
     _RogueOne()
